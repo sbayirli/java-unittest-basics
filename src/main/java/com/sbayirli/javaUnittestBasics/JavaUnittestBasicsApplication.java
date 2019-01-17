@@ -8,7 +8,9 @@ public class JavaUnittestBasicsApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(JavaUnittestBasicsApplication.class, args);
+		System.out.println("First");
 	}
+
 
 }
 
