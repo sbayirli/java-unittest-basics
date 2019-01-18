@@ -1,12 +1,20 @@
 package com.sbayirli.javaUnittestBasics.customer;
 
 public class CustomerService {
-    CustomerRepository repository = new CustomerRepository();
-    NotificationMailService mailService = new NotificationMailService();
+    private CustomerRepository repository = new CustomerRepository();
+    private NotificationMailService mailService = new NotificationMailService();
 
     public void saveCustomer(Customer customer){
         repository.saveCustomer(customer);
         mailService.sendNewCustomerMail(customer);
+    }
+
+    public void deleteCustomer(Integer customerId){
+        repository.deleteCustomer(customerId);
+    }
+
+    public Customer getCustomer(Integer customerId){
+        return repository.getCustomer(customerId);
     }
 
     public CustomerRepository getRepository() {
