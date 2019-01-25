@@ -17,5 +17,6 @@ public class JUnitAssertionsTest {
         Order order2 = new Order(1);
 
         assertEquals(order1,order2);
+        System.out.println(".");
     }
 }
