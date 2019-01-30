@@ -3,7 +3,7 @@ package com.sbayirli.javaUnittestBasics.helloTest;
 import com.sbayirli.javaUnittestBasics.customer.Customer;
 import org.junit.*;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 
 public class JUnitAssertionsTest {
@@ -17,6 +17,12 @@ public class JUnitAssertionsTest {
         Order order2 = new Order(1);
 
         assertEquals(order1,order2);
-        System.out.println(".");
+
+        order2 = order1;/*this line is for asserSame method, otherwise assertSame returns failure*/
+        assertSame(order1, order2);
+
+        /*testing values if null*/
+        assertNotNull(order1);
+        assertNotNull(order2);
     }
 }
