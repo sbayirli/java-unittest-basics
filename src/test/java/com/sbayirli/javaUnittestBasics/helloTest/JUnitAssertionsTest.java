@@ -18,11 +18,13 @@ public class JUnitAssertionsTest {
 
         assertEquals(order1,order2);
 
+
         order2 = order1;/*this line is for asserSame method, otherwise assertSame returns failure*/
         assertSame(order1, order2);
 
         /*testing values if null*/
         assertNotNull(order1);
         assertNotNull(order2);
+
     }
 }
