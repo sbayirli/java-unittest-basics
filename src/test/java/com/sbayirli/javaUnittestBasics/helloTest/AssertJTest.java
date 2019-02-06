@@ -1,6 +1,10 @@
 package com.sbayirli.javaUnittestBasics.helloTest;
 
+import org.assertj.core.api.AbstractListAssert;
+import org.assertj.core.api.Assertions;
 import org.assertj.core.api.Condition;
+import org.assertj.core.api.ObjectAssert;
+import org.assertj.core.groups.Tuple;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -8,6 +12,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.extractProperty;
+import static org.assertj.core.api.Assertions.tuple;
 
 /**
  * Created by sibelbayirli on 2/3/19.
@@ -52,6 +58,33 @@ public class AssertJTest {
         assertThat(cities2)
                 .describedAs("List does not match with French cities!")
                 .have(ifFrenchCity());
+
+
+    }
+
+    @Test
+    public void complexListTest(){
+
+        List<User> listUser = new ArrayList<>();
+        listUser.add(new User("Sibel","tt"));
+        listUser.add(new User("Seray","123"));
+        listUser.add(new User("Ahmet","111"));
+        listUser.add(new User("Ahmet","234"));
+        listUser.add(new User("Mithat","tt"));
+        listUser.add(new User("Merve","123"));
+
+        assertThat(listUser).extracting("name")
+                            .contains("Ahmet");
+
+        AbstractListAssert<?, List<? extends Tuple>, Tuple, ObjectAssert<Tuple>> contains = assertThat(listUser).extracting("name", "password")
+                .contains(
+                        tuple("Sibel", "tt"),
+                        tuple("Mithat", "tt")
+                );
+
+        assertThat(extractProperty("name",String.class)
+                .from(listUser))
+                .containsExactly("Sibel","Seray","Ahmet", "Ahmet","Mithat", "Merve");
 
 
     }
